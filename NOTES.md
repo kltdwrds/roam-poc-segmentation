@@ -24,6 +24,27 @@ in `env/SETUP.md`.
 - Total GPU time used end-to-end ≈ 2 hours; well inside the $25 budget cap
   ($1.20/hr box).
 
+## Loading the fine-tuned model
+
+The three fine-tuned checkpoints (`ptv3_pt_epoch{00,01,02}.pth`, 192 MB each) are
+intentionally not committed to the repo — they exceed GitHub's 100 MB per-file
+limit and Git LFS adds complexity that isn't worth it for a 48-hour POC. Three
+options for a reviewer who wants to load the trained weights rather than just
+read the eval numbers (which are committed at `eval/results.json` and
+`eval/confusion.png`):
+
+1. **Retrain.** Cheapest and most reproducible. ~16 min on an A100 80GB.
+   `PYTHONPATH=/workspace/Pointcept python src/finetune.py --epochs 3 --batch-size 4 --amp`
+   Full setup in env/SETUP.md.
+2. **Request via email.** edwards.ky1@gmail.com. Happy to share via Drive or HF.
+3. **Use the smaller intermediate checkpoint** that *did* commit (`checkpoints/finetune/epoch_000.pth`,
+   66 MB). This is the unimproved first-iteration checkpoint, useful as a
+   sanity-check load target but not the headline result.
+
+The eval numbers in `eval/results.json` are the authoritative artifact regardless;
+all three epoch checkpoints were evaluated end-to-end on Area-5 and the per-class
+IoU + binary perm/transient F1 + confusion matrices are committed.
+
 ## The pretrained-checkpoint mystery
 
 Most of the Day-2 time-cost-vs-time-spent variance came from this. Worth

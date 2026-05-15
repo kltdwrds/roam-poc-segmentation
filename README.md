@@ -9,9 +9,9 @@ CPU pipeline runnable on an M1 (SparseConvUnet on ScanNet-20); Day 2 fine-tunes
 head. **Headline result: binary permanent-vs-transient F1 = 96.98%** on the
 held-out S3DIS Area-5 (68 scenes, single-pass val mode, no TTA).
 
-Full writeup with design context, model decisions, and the three-pane viewer:
-**Day 2 writeup → [Notion URL TK]**. The repo here is the supporting artifact
-— code, checkpoints, eval results, and reproduce steps for a developer.
+**Full writeup, design context, and live viewer: [Notion deliverable →](https://www.notion.so/3612d98e96608154a9d1c754bd62063d)**
+
+![Three-pane viewer: raw → semantic → permanent-only on held-out S3DIS Area-5](docs/Screenshot%202026-05-14%20at%208.15.46%E2%80%AFPM.png)
 
 ## File map
 
@@ -113,6 +113,9 @@ guiding principle for both: PERMANENT = anything defining the building shell
 - **Eval is single-pass, not TTA.** Pointcept's official tester does 10-augmentation
   TTA aggregation; we don't. Direct comparison to the paper's headline mIoU
   isn't apples-to-apples.
+- **Fine-tuned checkpoints (.pth, 192 MB each) are not committed** due to GitHub's
+  100 MB file limit; eval results are. See NOTES.md "Loading the fine-tuned model"
+  for retrain or request instructions.
 - The held-out scene for the viewer is a single S3DIS Area-5 room (`conferenceRoom_1`
   or `office_3`). For the demo, that's enough; for production, you'd want
   cross-Area evaluation + open-vocab inputs.
