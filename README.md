@@ -11,7 +11,13 @@ held-out S3DIS Area-5 (68 scenes, single-pass val mode, no TTA).
 
 **Full writeup, design context, and live viewer: [Notion deliverable →](https://www.notion.so/3612d98e96608154a9d1c754bd62063d)**
 
-![Three-pane viewer: raw → semantic → permanent-only on held-out S3DIS Area-5](docs/Screenshot%202026-05-14%20at%208.15.46%E2%80%AFPM.png)
+## Demo: held-out S3DIS Area-5 office_3
+
+| Raw scan | Semantic prediction | Permanent-only (Roam's index) |
+|---|---|---|
+| ![raw](docs/office_3-raw.png) | ![semantic](docs/office_3-semantic.png) | ![permanent](docs/office_3-permanent.png) |
+
+*Same scene, three views. Left: raw point cloud as captured. Middle: PTv3 predictions colored in the S3DIS-13 semantic palette. Right: only the points predicted **permanent** — Roam's Reconstruct layer output.*
 
 ## File map
 
